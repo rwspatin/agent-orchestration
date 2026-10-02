@@ -2,13 +2,11 @@
 
 How I run coding agents across **Claude Code** and **Codex**: one model orchestrates, every task goes to the cheapest model + reasoning level that can do it well, and whoever implemented never reviews.
 
-This repo is the setup itself, ready to install:
+This repo is my actual setup, three pieces:
 
-- **6 fixed-tier subagents** for Claude Code (`opus-low/medium/high`, `sonnet-low/medium/high`)
-- **A drop-in `CLAUDE.md`** with the routing rules
-- **Codex recipes**: models, reasoning levels, sandbox modes
-- **Workflow scripts** for multi-agent fan-out with an explicit model on every agent
-- **A delegation contract** template so delegated work comes back verifiable
+- **[`CLAUDE.md`](CLAUDE.md)**: the rules. Who orchestrates, the routing matrix, when to use Codex, the delegation contract.
+- **[`agents/`](agents)**: 6 fixed-tier subagents for Claude Code (`opus-low/medium/high`, `sonnet-low/medium/high`). The rules route work to them.
+- **One setting** that pins the `opus` alias to the version you expect (see [Install](#install)).
 
 ## The three rules
 
@@ -69,12 +67,6 @@ model: claude-sonnet-5
 effort: low
 ---
 ```
-
-## Docs
-
-- [Delegation contract](docs/delegation-contract.md): what every delegated prompt must contain
-- [Codex](docs/codex.md): invocation, models, reasoning levels, sandbox modes, cross-review
-- [Workflows](docs/workflows.md): multi-agent scripts with an explicit model per agent
 
 ## License
 
