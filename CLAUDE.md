@@ -10,7 +10,7 @@ If the main session runs on the most capable model, it **only orchestrates**: un
 ## Rule 2 — Always delegate with an explicit tier
 A subagent with no model set inherits the parent's model. Therefore:
 - Always use one of these `subagent_type` values: `opus-low`, `opus-medium`, `opus-high`, `sonnet-low`, `sonnet-medium`, `sonnet-high` (fixed model + effort, defined in `~/.claude/agents/`).
-- Don't use generic agent types without an override; if one is truly required, pass `model: "sonnet"` or `model: "opus"`.
+- Don't use generic agent types (`general-purpose`, `Explore`, `Plan`, `fork`) without an override; if one is truly required, pass `model: "sonnet"` or `model: "opus"`.
 - In Workflow scripts, every `agent()` call takes an explicit `model`.
 
 ## Routing matrix
@@ -39,7 +39,7 @@ codex exec -m gpt-5.6-luna  -c model_reasoning_effort="low"  -s read-only       
 ```
 - `-s read-only` for analysis/review; `-s workspace-write` to change code. Never `danger-full-access` unless the user asks for it.
 - Long prompt: send it via stdin (`cat prompt.md | codex exec ... -`).
-- Long task: run it in the background and keep orchestrating; independent Codex tasks run in parallel (separate repos or worktrees — never two writers in the same working tree).
+- Long task: run it in the background (e.g. Bash with `run_in_background`) and keep orchestrating; independent Codex tasks run in parallel (separate repos or worktrees — never two writers in the same working tree).
 - Codex cannot see this conversation: the prompt must contain the goal, files, constraints, done criteria, and the verification command.
 - Always review Codex's diff/output before trusting or building on it.
 

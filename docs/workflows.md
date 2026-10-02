@@ -41,6 +41,8 @@ Cheap stages fan out wide; expensive stages only see what survived the cheap one
 ## Examples
 
 - [`workflows/review-changes.js`](../workflows/review-changes.js): review the current diff across dimensions, then adversarially verify each finding.
-- [`workflows/sweep-and-fix.js`](../workflows/sweep-and-fix.js): apply the same change across many files, each in its own worktree, with a reviewer per file.
+  Usage: *"run the workflow at workflows/review-changes.js"*.
+- [`workflows/sweep-and-fix.js`](../workflows/sweep-and-fix.js): apply the same change across many files (one agent per file, an Opus reviewer per diff), then run your verification command once.
+  Usage: *"run the workflow at workflows/sweep-and-fix.js with args {"change": "replace logger.warn with log.warn", "verify": "npm test"}"*.
 
-Run one by asking Claude Code to run the workflow script (pass its path), or copy it into `~/.claude/workflows/` to call it by name.
+Workflows are a Claude Code feature that fans out many agents, so they spend tokens fast. Claude Code only runs one when you explicitly ask for it.

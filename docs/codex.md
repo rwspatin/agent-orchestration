@@ -6,8 +6,8 @@ Codex is the parallel workforce: self-contained jobs inside a repo, running in t
 
 | Model | Role | Typical effort |
 |---|---|---|
-| `gpt-5.6-luna` | Fast and cheap: searches, renames, repetitive batches | low–medium |
-| `gpt-5.6-sol` | Everyday workhorse: features, fixes, tests | low–medium |
+| `gpt-5.6-luna` | Fast and cheap: searches, renames, repetitive batches | low–high |
+| `gpt-5.6-sol` | Everyday workhorse: features, fixes, tests | low–high |
 | `gpt-5.6-terra` | Strongest for code: multi-file work, hard bugs, reviews | medium–high |
 
 Reasoning effort is set per call with `-c model_reasoning_effort="low|medium|high"`.
@@ -42,7 +42,7 @@ Whoever implemented doesn't review:
 
 ```sh
 # Claude implemented → Codex Terra reviews
-cd ~/code/app
+cd ~/code/app   # exec review has no -C flag: run it from inside the repo
 codex exec review --uncommitted -m gpt-5.6-terra -c model_reasoning_effort="high"   # working-tree changes
 codex exec review --base main   -m gpt-5.6-terra -c model_reasoning_effort="high"   # whole branch vs main
 ```

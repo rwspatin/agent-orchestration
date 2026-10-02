@@ -19,7 +19,7 @@ It understands the request, breaks it down, delegates and checks the reports. It
 Start at the lowest tier that fits. If the report comes back weak, move up one step. Never start at the top.
 
 **3. Whoever implemented doesn't review.**
-Claude wrote it → Codex reviews. Codex wrote it → Opus reviews. A second model catches what the first one is blind to.
+A different model reviews. For critical work, cross vendors: Claude wrote it → Codex reviews; Codex wrote it → Opus reviews. A second model catches what the first one is blind to.
 
 ## Routing matrix
 

@@ -4,7 +4,11 @@
 set -euo pipefail
 
 force=false
-[[ "${1:-}" == "--force" ]] && force=true
+case "${1:-}" in
+  "") ;;
+  --force) force=true ;;
+  *) echo "usage: $0 [--force]" >&2; exit 2 ;;
+esac
 
 src="$(cd "$(dirname "$0")" && pwd)/agents"
 dest="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/agents"
@@ -21,4 +25,4 @@ for f in "$src"/*.md; do
 done
 
 echo
-echo "Next: paste CLAUDE.md into ~/.claude/CLAUDE.md and adjust the model names."
+echo "Next: paste CLAUDE.md into ${CLAUDE_CONFIG_DIR:-~/.claude}/CLAUDE.md and adjust the model names."
